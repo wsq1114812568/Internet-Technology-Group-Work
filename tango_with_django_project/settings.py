@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
 STATIC_DIR=os.path.join(BASE_DIR,'static')
 MEDIA_DIR=os.path.join(BASE_DIR,'media')
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+REGISTRATION_OPEN = True
+
+REGISTRATION_AUTO_LOGIN = True
+
+LOGIN_REDIRECT_URL = 'rango:index'
+
+LOGIN_URL = 'auth_login'
+
 
 
 # Static files (CSS, JavaScript, Images)

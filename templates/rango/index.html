@@ -4,95 +4,58 @@
 {% block title_block %}
 Homepage
 {% endblock %}
-
 {% block body_block %}
-<h1>Rango says...</h1>
-<div>
-    {% if user.is_authenticated %}
-    howdy {{ user.username }}!
-    {% else %}
-    hey there partner!
-    {% endif %}
-    <br/>
-    <strong>{{boldmessage}}</strong><br/>
-</div>
-<div>
-    <h2>Most Liked Categories</h2> 
-{% if categories %}
-    <ul>
-        {% for category in categories %}
-        <li>
-            <a href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
-        </li>
-        {%endfor%}
-    </ul>
-{%else%}
-    <strong>There are no categories present.</strong>
-{%endif%}
-</div>
-<div>
-    <h2>Most Viewed Pages</h2>
-    {% if pages %}
-        <u1>
-        {% for page in pages%}
+<div id="main">
+    <div id="top" style="margin-bottom: 100px; ">
+        <div style="margin:30px">
+            <h1 align="center">Rango says...</h1>
+            <div style="padding:15px; font-size:20px;" align="center" >
+                {% if user.is_authenticated %}
+                <strong >Hello {{ user.username }}!</strong>
+                {% else %}
+                hey there partner!
+                {% endif %}
+                <br/>
+                <strong>{{boldmessage}}</strong><br/>
+            </div>
+        </div>
+    </div>
+    <div id="left" style="width: 40%; float: left; border:1px solid #000;margin-right: 50px; padding:15px" >
+        <h2>Most Liked Categories</h2> 
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
             <li>
-                <a href="{{page.url}}">{{page.title}}</a>
+                <a id="a2" href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
             </li>
-        {% endfor %}
-        </u1>
-    {% else %}
-        <strong>There are no pages present.</strong>
-    {% endif %}
-</div>
+            {%endfor%}
+        </ul>
+    {%else%}
+        <strong>There are no categories present.</strong>
+    {%endif%}
+    </div>
+    <div id="middle" style="width:35%; float: left; border:1px solid #000; padding:15px ">
+        <h2>Most Viewed Pages</h2>
+        {% if pages %}
+            <u1>
+            {% for page in pages%}
+                <li>
+                    <a id="a2" href="{{page.url}}">{{page.title}}</a>
+                </li>
+            {% endfor %}
+            </u1>
+        {% else %}
+            <strong>There are no pages present.</strong>
+        {% endif %}
+    </div>
+    <div id="right" style="width: 10%; float: left; margin-left:15px">
+        <div>
+            <img src="{%static 'images/rango.jpg'%}" alt="Picture of Rango" width="200" height="=300"/>
+        </div>
+    </div>
 
-<div>
-    <img src="{%static 'images/rango.jpg'%}" alt="Picture of Rango" />
 </div>
 {% endblock %}
-<!-- <!DOCTYPE html>
-{% load staticfiles %}
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
-    <body>
-        <h1>Rango says...</h1>
-        <div>
-            hey there partner!<br/>
-            <strong>{{boldmessage}}</strong><br/>
-        </div>
-        <div>
-            <h2>Most Liked Categories</h2> 
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <li>
-                    <a href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
-                </li>
-                {%endfor%}
-            </ul>
-        {%else%}
-            <strong>There are no categories present.</strong>
-        {%endif%}
-        </div>
-        <div>
-            <h2>Most Viewed Pages</h2>
-            {% if pages %}
-                <u1>
-                {% for page in pages%}
-                    <li>
-                        <a href="{{page.url}}">{{page.title}}</a>
-                    </li>
-                {% endfor %}
-                </u1>
-            {% else %}
-                <strong>There are no pages present.</strong>
-            {% endif %}
-        </div>
-        <div>
-            <a href="{% url 'rango:about' %}">About</a><br />
-            <a href="/rango/add_category/">Add a New Category</a><br />
-            <img src="{%static 'images/rango.jpg'%}" alt="Picture of Rango" />
-        </div>
-    </body>
-</html> -->
+
+ 
+    
