@@ -36,4 +36,14 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Comment(models.Model):
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    text = models.TextField(max_length=200)
+    created_time = models.DateTimeField(auto_now_add=True)
+    page=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.text[:20]
         
