@@ -1,0 +1,43 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+ 
+{% block title_block %}
+Comment
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <h2 align="center">Comment Area of Category: {{category.name}}</h2><br/><br/>
+    <p>Choose the Page you want to comment! </p>
+    <form method="post" style="margin-bottom: 3px;">
+      {% csrf_token %}
+      <div class="form-group">
+        <select class="form-control" name="pageChoosen" style="background-color:rgb(175, 173, 173)">
+            {% for page in pages %}
+            <option value="{{page.title}}" style="background-color:rgb(175, 173, 173)">{{page.title}}</option>
+            {% endfor %}
+        </select><br /><br/>
+        <textarea class="form-control" rows="5" id="comment" name="text" style="background-color:lightgoldenrodyellow"></textarea><br/>
+        <input type="submit"  class="btn btn-info" value="submit" style="margin-right: 15px;"/>
+        <input type="reset"  class="btn btn-info" value="reset"/>
+      </div>
+    </form>
+    <div name="existing comments" style="margin: 3px;">
+        <p>Here are &ensp;{{number}} &ensp;comments now: </p>
+        {% for comment in comment %}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">User: {{comment.name}}&emsp;&emsp;&emsp;&emsp;Page:{{comment.page}}&emsp;&emsp;&emsp;&emsp;Time:{{comment.created_time}}</h3>
+            </div>
+            <div class="panel-body">
+                {{comment.text}}
+            </div>
+        </div>
+        {%endfor%}     
+    </div>
+  </div>
+    
+</div>
+
+{% endblock %}
