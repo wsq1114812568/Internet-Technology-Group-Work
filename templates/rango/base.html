@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load rango_template_tags %}
+
+<html>
+    <head lang="en">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8"/>
+        <title>Rango -
+            {% block title_block %}
+            How to Tango with Django!
+            {% endblock %}
+        </title>
+        <style>
+            body{
+                background-image: url("{%static 'images/background.jpg'%}") 
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand p-2" href="{% url 'rango:index' %}">Rango</a>
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li ><a href="{% url 'rango:index' %}">Home</a></li> 
+                        <li><a href="{% url 'rango:about' %}">About</a></li>
+                        {% if user.is_authenticated %}
+                        <li  ><a href="{%url 'rango:restricted' %}">Restricted Page</a></li>
+                        <li ><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
+                        <ul class="nav nav-tabs navbar-right"> 
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Personal Information</a></li> 
+                                <li><a href="#">Switch Account</a></li> 
+                                <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Log out</a></li> 
+                            </ul>
+                        </li>
+                        {% else %}
+                        <ul class="nav nav-tabs navbar-right"> 
+                        <li  ><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                        <li ><a href="{% url 'auth_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                    </ul> 
+                </div>
+            </div>
+        </nav> 
+        <div>
+            <div>
+                <div style="float: left; width: 15%; border:1px solid #000; margin-right:50px; padding:20px">
+                    {% block sidebar_block %}
+                    <input type="search">
+                    {% get_category_list category %}
+                    {% endblock %}
+                </div>
+                <div style="float: left;">
+                {% block body_block %}
+                {% endblock %}
+                </div>
+            </div>  
+        </div>
+        <hr/>
+    </body>
+</html>
