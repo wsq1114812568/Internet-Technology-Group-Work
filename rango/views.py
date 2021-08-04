@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404,redirect
+from rango.bing_search import run_query
 
 def index(request):
     category_list=Category.objects.order_by('-likes')[:5]
@@ -132,3 +133,12 @@ def comment(request,category_name_slug):
     return render(request, 'rango/comment.html', context=context_dict)
 
 
+def search(request):    
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            # Run our Bing function to get the results list!
+              result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})

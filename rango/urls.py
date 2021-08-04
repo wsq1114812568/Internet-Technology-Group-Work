@@ -11,4 +11,5 @@ urlpatterns=[
     path('category/<slug:category_name_slug>/add_page/',views.add_page,name='add_page'),
     path('restricted/',views.restricted,name='restricted'),
     path('category/<slug:category_name_slug>/comment/',views.comment,name='comment'), 
+    path('search/', views.search, name='search'),
 ]
