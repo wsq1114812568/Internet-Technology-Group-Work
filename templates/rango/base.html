@@ -16,54 +16,59 @@
         <style>
             body{
                 background-image: url("{%static 'images/background.jpg'%}") 
-            }
+            }  
             
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand p-2" href="{% url 'rango:index' %}">Rango</a>
-                <div>
-                    <ul class="nav nav-tabs">
-                        <li ><a href="{% url 'rango:index' %}">Home</a></li> 
-                        <li><a href="{% url 'rango:about' %}">About</a></li>
-						<li><a href="{% url 'rango:search' %}">Search</a></li>
-                        {% if user.is_authenticated %}
-                        <li  ><a href="{%url 'rango:restricted' %}">Restricted Page</a></li>
-                        <li ><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
-                        <ul class="nav nav-tabs navbar-right"> 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Personal Information</a></li> 
-                                <li><a href="#">Switch Account</a></li> 
-                                <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Log out</a></li> 
-                            </ul>
-                        </li>
-                        {% else %}
-                        <ul class="nav nav-tabs navbar-right"> 
-                        <li  ><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                        <li ><a href="{% url 'auth_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        {% endif %}
-                    </ul> 
-                </div>
+        <div id="main" style="position: absolute; width:100%; height:100%">
+            <div id="header" style=" height:7%;padding: 0px; padding: 0px; margin: 0px;">
+                <nav class="navbar navbar-inverse" role="navigation">
+                    <div class="container-fluid">
+                        <a class="navbar-brand p-2" href="{% url 'rango:index' %}">Rango</a>
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li ><a href="{% url 'rango:index' %}">Home</a></li> 
+                                <li><a href="{% url 'rango:about' %}">About</a></li>
+                                {% if user.is_authenticated %}
+                                <li  ><a href="{%url 'rango:restricted' %}">Restricted Page</a></li>
+                                <li ><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
+                                <ul class="nav nav-tabs navbar-right"> 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Personal Information</a></li> 
+                                        <li><a href="#">Switch Account</a></li> 
+                                        <li><a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Log out</a></li> 
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <ul class="nav nav-tabs navbar-right"> 
+                                <li  ><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                                <li ><a href="{% url 'auth_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                {% endif %}
+                            </ul> 
+                        </div>
+                    </div>
+                </nav> 
             </div>
-        </nav> 
-        <div>
-            <div>
-                <div style="float: left; width: 15%; border:1px solid #000; margin-right:50px; padding:20px">
-                    {% block sidebar_block %}
-                    <input type="search">
-                    {% get_category_list category %}
-                    {% endblock %}
-                </div>
-                <div style="float: left;">
+             <div id="menu" style=" height:80%;width:15%;float:left; padding: 10px; margin-right: 20px; border-right:2px solid #000;">
+                {% block sidebar_block %}
+                <br/>
+                <input type="search">
+                <br/><br/>
+                {% get_category_list category %}
+                {% endblock %}
+            </div>
+            <div id="content" style=" height:80%;width:80%;float:left; padding: 0px; margin: 0px;">
                 {% block body_block %}
                 {% endblock %}
-                </div>
-            </div>  
+            </div>
+            <div style="clear:both;"></div>
+            <div id="footer" style=" height:10%; width:100%; text-align:center; border-top:2px solid #000;padding: 0px; margin: 0px; background-color: grey;">
+                    Created by Shiyue Xia, Xuantong Chen, Zhe Tang and Shuqi Wang 
+            </div>
         </div>
-        <hr/>
+        
     </body>
 </html>
