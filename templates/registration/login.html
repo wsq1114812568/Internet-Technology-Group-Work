@@ -3,15 +3,22 @@
 Login
 {% endblock %}
 {% block body_block %}
-<h1>Login</h1>
-<form method="post" action=".">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Log In" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-<p>
-Not registered?
-<a href="{% url 'registration_register' %}">Register here!</a>
-</p>
+<center>
+<h1 align="center">Login</h1><br/><br/><br/>
+    <div style="width:300px;" align="left">
+        {% load crispy_forms_tags %}
+        <form  method="post" action=".">
+            {% csrf_token %}
+            {{form | crispy }}
+            <div align="center">
+                <input type="submit" value="Log In" class="btn btn-info"/>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+        </form>
+        <div align="center"><br/>
+            <p>Not registered?<a href="{% url 'registration_register' %}">Register here!</a>
+            </p>
+        </div>
+    </div>
+</center>
 {% endblock %}

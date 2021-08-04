@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 {% load staticfiles %}
 {% load rango_template_tags %}
+{% load crispy_forms_tags %}
+
 
 <html>
     <head lang="en">
@@ -57,7 +59,9 @@
                 <br/>
                 <input type="search">
                 <br/><br/>
+                <ul class="list-group">
                 {% get_category_list category %}
+                </ul>
                 {% endblock %}
             </div>
             <div id="content" style=" height:80%;width:80%;float:left; padding: 0px; margin: 0px;">

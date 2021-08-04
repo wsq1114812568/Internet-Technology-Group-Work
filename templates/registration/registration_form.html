@@ -3,10 +3,18 @@
 Register
 {% endblock %}
 {% block body_block %}
-<h1>Register Here</h1>
+<center>
+<h1>Register Here</h1><br/>
+<div align="left" style="width:700px; padding-left:100px">
+    {% load crispy_forms_tags %}
 <form method="post" action=".">
 {% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Register" />
+{{form | crispy }}
+<!-- {{ form.as_p }} -->
+<center>
+<input type="submit" value="Register"  class="btn btn-info"/>
+</center>
 </form>
+</div>
+</center>
 {% endblock %}

@@ -20,13 +20,13 @@ Homepage
             </div>
         </div>
     </div>
-    <div id="left" style="width: 40%; float: left; border:1px solid #000;margin-right: 50px; padding:15px" >
+    <div id="left" style="width: 35%; float: left;  margin-right: 50px;  padding:15px" >
         <h2>Most Liked Categories</h2> 
     {% if categories %}
-        <ul>
+        <ul class="list-group">
             {% for category in categories %}
-            <li>
-                <a id="a2" href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
+            <li class="list-group-item" style="background-color:lightsteelblue;">
+                <a  href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
             </li>
             {%endfor%}
         </ul>
@@ -34,13 +34,13 @@ Homepage
         <strong>There are no categories present.</strong>
     {%endif%}
     </div>
-    <div id="middle" style="width:35%; float: left; border:1px solid #000; padding:15px ">
+    <div id="middle" style="width: 35%; float: left;  margin-right: 50px;  padding:15px">
         <h2>Most Viewed Pages</h2>
         {% if pages %}
-            <u1>
+            <u1 class="list-group">
             {% for page in pages%}
-                <li>
-                    <a id="a2" href="{{page.url}}">{{page.title}}</a>
+                <li class="list-group-item" style="background-color:lightsteelblue;">
+                    <a href="{{page.url}}">{{page.title}}</a>
                 </li>
             {% endfor %}
             </u1>

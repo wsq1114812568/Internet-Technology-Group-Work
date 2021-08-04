@@ -7,7 +7,7 @@ Restricted Page
 
 {% block body_block %}
 <h1>Restricted Page</h1>
-Scinence you're logged in, you can see this text!<br />
+Since you're logged in, you can see this text!<br />
 {% if user.is_authenticated %}
 {{ user.username }} was here!
 {% endif %}

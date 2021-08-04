@@ -37,10 +37,28 @@ def populate():
         {'title':'Flask',
         'url':'http://flask.pocoo.org',
         'views':26} ]
+    java_page=[
+        {'title':'JavaApi',
+        'url':'https://www.matools.com/api/java8',
+        'views':85},
+        {'title':'JDBC',
+        'url':'https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/',
+        'views':72},
+    ]
+    c_page=[
+        {'title':'C++',
+        'url':'http://www.cplusplus.com/',
+        'views':92},
+        {'title':'cppreference',
+        'url':'https://en.cppreference.com/w/',
+        'views':66},
+    ]
 
     cats = {'Python': {'pages': python_pages,'views':128,'likes':64},
            'Django': {'pages': django_pages,'views':64,'likes':32},
-           'Other Frameworks': {'pages': other_pages,'views':32,'likes':16} }
+           'Other Frameworks': {'pages': other_pages,'views':32,'likes':16}, 
+           'Java':{'pages':java_page,'views':150,'likes':140},
+           'C++':{'pages':c_page,'views':50,'likes':40},}
 
     for cat, cat_data in cats.items():
         c=add_cat(cat,views=cat_data['views'],likes=cat_data['likes'])
