@@ -33,6 +33,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    likedCategories=models.ManyToManyField(Category,blank=True,default='')
+    #userName = models.CharField(max_length=150)
 
     def __str__(self):
         return self.user.username
