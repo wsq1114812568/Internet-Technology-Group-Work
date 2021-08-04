@@ -1,4 +1,5 @@
-from rango.models import Page,Comment,Category
+from django.contrib.auth.models import User
+from rango.models import Page,Comment,Category,UserProfile
 from rango.forms import CategoryForm,UserForm, UserProfileForm,PageForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -143,3 +144,21 @@ def search(request):
               result_list = run_query(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list})
+
+
+def profile(request,userName):
+    context_dict={}
+    try:
+        context_dict['userName']=userName
+
+        loginUser=User.objects.filter(username=userName)
+        userProfile=UserProfile.objects.filter(user=loginUser[0])
+        context_dict['userProfile']=userProfile
+        print(context_dict['userProfile'])
+
+    except Category.DoesNotExist:
+        context_dict['userName']=None
+        context_dict['userProfile']=None
+        print("except")
+
+    return render(request, 'rango/profile.html', context=context_dict)

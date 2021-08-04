@@ -1,0 +1,37 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+ 
+{% block title_block %}
+Profile
+{% endblock %}
+
+{% block body_block %}
+
+
+    <u1>
+    <strong>Hello, {{ user.username }}, welcome to perosonal information center.</strong>
+
+
+
+
+
+    {% for user in userProfile %}
+                <br/><strong>your email is: {{ user.website }}</strong><br/>
+                
+                <h1>Liked Categories</h1>
+                {% for cat in user.likedCategories.all %}
+                <li>
+                <a id="a2" href="{% url 'rango:show_category' cat.slug %}">{{cat.name}}</a>
+                </li>
+                {% endfor %}
+
+
+    {% endfor %}
+
+    </u1>
+
+
+
+
+{% endblock %}
+
