@@ -1,7 +1,0 @@
-db.sqlite3
-__pycache__/
-*.pyc
-*.sqlite3
-*.pyc
-rango/__pycache__/models.cpython-37.pyc
-.idea
