@@ -175,6 +175,11 @@ def add_like_number(request):
             like = page.likeNumber + 1
             page.likeNumber = like
             page.save()
+            
+            currentUser = request.user
+            theUser = UserProfile.objects.get(user=currentUser)
+            theUser.likedPages.add(page)
+            theUser.save()
     return HttpResponse(like)
 
 

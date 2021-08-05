@@ -35,7 +35,7 @@ class UserProfile(models.Model):
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     likedCategories=models.ManyToManyField(Category,blank=True,default='')
-    #userName = models.CharField(max_length=150)
+    likedPages=models.ManyToManyField(Page,blank=True,default='')
 
     def __str__(self):
         return self.user.username
