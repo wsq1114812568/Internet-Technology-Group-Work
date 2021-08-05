@@ -9,7 +9,7 @@
 
 <h1 align="center">Add a Page</h1>
 <center>
-        <div align="center" style="width: 350px;padding-top:50px;">
+        <div id="add_page_div1" align="center" >
             <form id="page_form" method="post" action="/rango/category/{{category.slug}}/add_page/">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
@@ -20,7 +20,6 @@
                    {{field.help_text}}<br /><br/>
                    {{field}}<br /><br/>
                 {% endfor %}
-        
                 <input type="submit" name="submit" value="Create Page" class="btn btn-info"/>  
             </form>
         </div>

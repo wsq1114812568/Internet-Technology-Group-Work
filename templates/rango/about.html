@@ -7,16 +7,16 @@
 
 {% block body_block %}
 <h1 align="center">Rango says...</h1>
-<div style="width:30%;float:left">
-     <img src="{%static 'images/rango.jpg'%}" alt="Picture of Rango" width="200" height="=300" />
+<div id="aboutdiv1">
+     <img src="{%static 'images/rango1.jpg'%}" alt="Picture of Rango" width="200" height="=300" />
 </div>
-<div  style="width:60%;float: left;" class="page-header">
+<div  id="aboutdiv2" class="page-header">
     <br/>
     <h1>Here is the about page.</h1>
     <strong><h3>This tutorial has been put together by Shuqi Wang, Shiyue Xia, Xuantong Chen and Zhe Tang </h3></strong><br/>
     <p>Visits: {{visits}}</p>
 </div>
 <div style="clear:both">
-    <img src="{{MEDIA_URL}}cat.jpg" alt="Picture of a Cat." width="200" height="=500" />
+    <img src="{{MEDIA_URL}}cat.jpg" alt="Picture of a Cat." width="200" height="200" />
 </div>
 {% endblock %}
