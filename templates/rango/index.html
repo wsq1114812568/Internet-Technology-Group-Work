@@ -11,7 +11,12 @@ Homepage
             <h1 align="center">Rango says...</h1>
             <div id="div1" align="center" >
                 {% if user.is_authenticated %}
-                <strong >Hello {{ user.username }}!</strong>
+                <strong >Hello {{ user.username }}!</strong><br/>
+                <strong>Please update your user profile here!</strong>
+                <form method="post" action="{% url 'rango:add_userprofile' user.username  %}">
+                    {% csrf_token %}
+                    <input type="submit"  class="btn btn-info" value="Update User Profile" style="margin-right: 15px;"/>
+                </form>
                 {% else %}
                 hey there partner!
                 {% endif %}
