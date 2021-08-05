@@ -11,19 +11,17 @@ Unknown Category
 
 {% block body_block %}
 <style>
-.like{ color:#ccc; cursor:pointer;}
+.like{ color:rgb(25, 50, 192); cursor:pointer;}
 .cs{color:#f00;}
-
 </style>
 <center>
     {% if category %}
     <h1>{{category.name}}</h1><br/><br/>
-    <div align="left" style="width:400px; padding-top: 30px;">
+    <div id="categorydiv1" align="left" >
         {% if pages %}
         <u1 class="list-group">
             {% for page in pages %}
-            <li class="list-group-item" style="background: lightgrey;">
-                <>
+            <li id="categoryli1" class="list-group-item" >
                 <a href="{{page.url}}">{{page.title}}</a>
                 <p id="like_{{page.id}}" class="like" style="float:right" onclick="like({{page.id}})">&#10084;</p>
                 <p id="number_{{page.id}}" style="float:right">{{page.likeNumber}}</p>
