@@ -215,17 +215,24 @@ def sub_like_number(request):
 
 def add_like_number_category(request,category_name_slug):
     cate_name = category_name_slug
-    like = 0
     if cate_name:
-        print(cate_name)
         category = Category.objects.get(slug=cate_name)
-        if category:
+        print(category.slug)
+        currentUser = request.user
+        theUser = UserProfile.objects.get(user=currentUser)
+        liked = False
+        for category1 in theUser.likedCategories.all():
+            if category1.slug==cate_name:
+                liked=True
+
+
+        if not liked:
+            print(category.slug)
             like = category.likes + 1
             category.likes = like
             category.save()
 
-            currentUser = request.user
-            theUser = UserProfile.objects.get(user=currentUser)
+            
             theUser.likedCategories.add(category)
             theUser.save()
 
@@ -240,15 +247,24 @@ def add_like_number_category(request,category_name_slug):
 
 def sub_like_number_category(request,category_name_slug):
     cate_name = category_name_slug
-    like = 0
     if cate_name:
         category = Category.objects.get(slug=cate_name)
-        if category:
+        currentUser = request.user
+        theUser = UserProfile.objects.get(user=currentUser)
+        liked = False
+        for category1 in theUser.likedCategories.all():
+            if category1.slug==cate_name:
+                liked=True
+
+
+        if  liked:
             like = category.likes - 1
             category.likes = like
             category.save()
-
             
+
+            theUser.likedCategories.remove(category)
+            theUser.save()
 
     context_dict={}
     category=Category.objects.get(slug=category_name_slug)

@@ -35,8 +35,10 @@ Unknown Category
         {% if user.is_authenticated %}
         <center>
             <a href="{% url 'rango:add_page' category.slug %}" class="btn btn-info">Add a New Page</a>
-            <a href="{% url 'rango:comment' category.slug %}" class="btn btn-info"> See comment</a>
             <a href="{% url 'rango:add_like_number_category' category.slug %}" class="btn btn-info"> Like Category</a>
+            <a href="{% url 'rango:sub_like_number_category' category.slug %}" class="btn btn-info"> Undo liked Category</a>
+            <a href="{% url 'rango:comment' category.slug %}" class="btn btn-info"> See comment</a>
+
         </center>
         {% endif %}
         {% else %}
