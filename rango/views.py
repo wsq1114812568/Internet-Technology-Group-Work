@@ -273,9 +273,6 @@ def sub_like_number_category(request,category_name_slug):
     context_dict['category']=category
 
     return render(request,'rango/category.html',context=context_dict)
-<<<<<<< HEAD
-=======
-    
     
     
 def search(request):
@@ -289,4 +286,3 @@ def search(request):
             result_list = run_query(query)
     
     return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
->>>>>>> f77e613cddec1c28bcbe3143d3c994072f181355
