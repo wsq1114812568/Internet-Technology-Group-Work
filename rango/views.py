@@ -8,9 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404,redirect
-from rango.bing_search import run_query
-from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger,InvalidPage
 
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger,InvalidPage
+from rango.bing_search import run_query
 def index(request):
     category_list=Category.objects.order_by('-likes')[:5]
     page_list=Page.objects.order_by('-views')[:5]
