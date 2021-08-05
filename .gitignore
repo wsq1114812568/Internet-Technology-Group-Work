@@ -4,3 +4,4 @@ __pycache__/
 *.sqlite3
 *.pyc
 rango/__pycache__/models.cpython-37.pyc
+.idea

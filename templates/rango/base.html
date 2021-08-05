@@ -61,34 +61,25 @@
              <div id="divmenu">
                 {% block sidebar_block %}
                 <br/>
-                <input type="search">
                 <br/><br/>
-
-                
                 <ul class="list-group">
                 {% get_category_list category %}
-                
-
                 </ul>
                 {% endblock %}
             </div>
-
 
             <div id="divcontent" >
                 {% block body_block %}
                 {% endblock %}
             </div>
-
-
             <div style="clear:both;"></div>
+            {% block foot_block %}
             <div id="divfooter" >  
+                
                 Created by Shiyue Xia, Xuantong Chen, Zhe Tang and Shuqi Wang&emsp;&emsp;
-                <img src="{%static 'images/QRcode.jpg'%}" alt="Picture of Rango" width=70px height=70px />          
+                <img src="{%static 'images/QRcode.jpg'%}" alt="Picture of Rango" width=50px height=50px />          
             </div>
-
-
-        </div>   
-        
-        
+            {% endblock %}  
+        </div>    
     </body>
 </html>
