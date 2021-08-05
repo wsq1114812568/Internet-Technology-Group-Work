@@ -162,3 +162,31 @@ def profile(request,userName):
         print("except")
 
     return render(request, 'rango/profile.html', context=context_dict)
+
+
+def add_like_number(request):
+    page_id = None
+    if request.method == 'GET':
+        page_id = request.GET['page_id']
+    like = 0
+    if page_id:
+        page = Page.objects.get(id=int(page_id))
+        if page:
+            like = page.likeNumber + 1
+            page.likeNumber = like
+            page.save()
+    return HttpResponse(like)
+
+
+def sub_like_number(request):
+    page_id = None
+    if request.method == 'GET':
+        page_id = request.GET['page_id']
+    like = 0
+    if page_id:
+        page = Page.objects.get(id=int(page_id))
+        if page:
+            like = page.likeNumber - 1
+            page.likeNumber = like
+            page.save()
+    return HttpResponse(like)
