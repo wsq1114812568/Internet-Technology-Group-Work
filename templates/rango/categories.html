@@ -1,13 +1,45 @@
-<ul>
+
+
+
+<style>
+.like{ color:rgb(25, 50, 192); cursor:pointer;}
+</style>
+
+<div align="left">
+
+
     {%if categories%}
        {% for c in categories %}
        {% if c == current_category %}
-         <li><strong><a href="{%url 'rango:show_category' c.slug %}">{{c.name}}</a></strong></li>
-         {% else %}
-         <li><a href="{%url 'rango:show_category' c.slug %}">{{c.name}}</a></li>
-         {% endif %}
+
+
+         <strong><a href="{%url 'rango:show_category' c.slug %}">{{c.name}}</a></strong>
+
+         <div align="right">
+         <p id="like_{{c.name}}" class="like" style="float:right" >&#10084;</p>
+         <p id="number_{{c.name}}" style="float:right">{{c.likes}}</p>
+         </div>
+
+         <br>
+
+
+      {% else %}
+
+
+         <a href="{%url 'rango:show_category' c.slug %}">{{c.name}}</a>
+         
+         <div align="right">
+         <p id="like_{{c.name}}" class="like" style="float:right" >&#10084;</p>
+         <p id="number_{{c.name}}" style="float:right">{{c.likes}}</p>   
+         </div>
+ 
+         <br>
+
+
+      {% endif %}
        {% endfor %}
     {% else %}
        <li><strong>There are no categories present.</strong></li>
     {% endif %}
-</ul>
+
+   </div>

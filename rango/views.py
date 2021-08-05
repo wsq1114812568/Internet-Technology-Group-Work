@@ -175,7 +175,7 @@ def add_like_number(request):
             like = page.likeNumber + 1
             page.likeNumber = like
             page.save()
-            
+
             currentUser = request.user
             theUser = UserProfile.objects.get(user=currentUser)
             theUser.likedPages.add(page)
@@ -195,3 +195,48 @@ def sub_like_number(request):
             page.likeNumber = like
             page.save()
     return HttpResponse(like)
+
+def add_like_number_category(request,category_name_slug):
+    cate_name = category_name_slug
+    like = 0
+    if cate_name:
+        print(cate_name)
+        category = Category.objects.get(slug=cate_name)
+        if category:
+            like = category.likes + 1
+            category.likes = like
+            category.save()
+
+            currentUser = request.user
+            theUser = UserProfile.objects.get(user=currentUser)
+            theUser.likedCategories.add(category)
+            theUser.save()
+
+    context_dict={}
+    category=Category.objects.get(slug=category_name_slug)
+    pages=Page.objects.filter(category=category)
+    context_dict['pages']=pages
+    context_dict['category']=category
+
+    return render(request,'rango/category.html',context=context_dict)
+
+
+def sub_like_number_category(request,category_name_slug):
+    cate_name = category_name_slug
+    like = 0
+    if cate_name:
+        category = Category.objects.get(slug=cate_name)
+        if category:
+            like = category.likes - 1
+            category.likes = like
+            category.save()
+
+            
+
+    context_dict={}
+    category=Category.objects.get(slug=category_name_slug)
+    pages=Page.objects.filter(category=category)
+    context_dict['pages']=pages
+    context_dict['category']=category
+
+    return render(request,'rango/category.html',context=context_dict)

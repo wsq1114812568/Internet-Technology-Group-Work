@@ -36,6 +36,7 @@ Unknown Category
         <center>
             <a href="{% url 'rango:add_page' category.slug %}" class="btn btn-info">Add a New Page</a>
             <a href="{% url 'rango:comment' category.slug %}" class="btn btn-info"> See comment</a>
+            <a href="{% url 'rango:add_like_number_category' category.slug %}" class="btn btn-info"> Like Category</a>
         </center>
         {% endif %}
         {% else %}
@@ -55,10 +56,15 @@ Unknown Category
         }
     }
 
-    function addLikeNumber(id) {
-        $.get("/rango/page/add_like_number",{page_id:id}, function(res){
+    function addLikeNumber(id) 
+    {
+        $.get("/rango/page/add_like_number",
+        {page_id:id}, 
+        function(res)
+        {
             $("#number_"+id).html(res);
-        })
+        }
+        )
     }
 
     function subLikeNumber(id) {
@@ -69,7 +75,6 @@ Unknown Category
 
 </script>
 {% endblock %}
-
 
 
 
