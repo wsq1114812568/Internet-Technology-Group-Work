@@ -17,4 +17,5 @@ urlpatterns=[
     path('category/<slug:category_name_slug>/comment/',views.comment,name='comment'),
     path('search/', views.search, name='search'),
     path('profile/<str:userName>/',views.profile,name='profile'),
+    path('add_userProfile/<str:userName>/',views.add_userProfile,name='add_userprofile'),
 ]

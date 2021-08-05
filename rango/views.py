@@ -134,7 +134,6 @@ def comment(request,category_name_slug):
     context_dict['number']=number
     return render(request, 'rango/comment.html', context=context_dict)
 
-
 def search(request):    
     result_list = []
     if request.method == 'POST':
@@ -163,6 +162,24 @@ def profile(request,userName):
 
     return render(request, 'rango/profile.html', context=context_dict)
 
+@login_required
+def add_userProfile(request,userName):
+    user=User.objects.get(username=userName)
+    context_dict={}
+    category_list=Category.objects.order_by('-likes')[:5]
+    page_list=Page.objects.order_by('-views')[:5]
+    context_dict['boldmessage']='Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['categories']=category_list
+    context_dict['pages']=page_list
+
+    if request.method == 'POST':
+        try:
+            userProfile=UserProfile.objects.get(user=user)
+        except:
+            userProfile=UserProfile.objects.create(user=user)
+    userProfile.save()
+    
+    return render(request, 'rango/index.html',context=context_dict)
 
 def add_like_number(request):
     page_id = None
